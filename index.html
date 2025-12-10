@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motormines | Premium Pre-Owned Motorcycles</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" type="image/x-icon" href="images/logo/motormines-logo.png">
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <!-- Sticky Navbar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <img src="images/logo/motormines-logo.png" class="logo-img" alt="Motormines Logo">
+            <div class="logo-text">
+                <div class="logo-main">MOTORMINES</div>
+                <div class="logo-sub">Ride Your Dreams</div>
+            </div>
+        </div>
+        
+        <div class="nav-links" id="navLinks">
+            <a href="#featured">Top Pick</a>
+            <a href="#inventory">Inventory</a>
+            <a href="#brands">Brands</a>
+            <a href="#contact">Contact</a>
+        </div>
+        
+        <!-- Hamburger Button -->
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero section">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-left" data-aos="fade-up">
+                    <p class="tagline">PREMIUM PRE-OWNED MOTORCYCLES</p>
+                    <h1 class="hero-title">
+                        Ride the Thrill.<br>
+                        <span class="orange-text">Own the Machine.</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Discover meticulously inspected, performance-ready motorcycles from India's most trusted brands. 
+                        Every bike comes with a comprehensive service history and quality assurance.
+                    </p>
+                    <button class="btn-primary" onclick="scrollToInventory()">Explore Inventory</button>
+                </div>
+                <div class="hero-right" data-aos="fade-left">
+                    <div class="hero-img-wrapper">
+                        <img src="angry-_-kat-5AVv-01CWnE-unsplash.jpg" class="hero-bike" alt="Premium Motorcycle">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- This Week's Top Pick -->
+    <section id="featured" class="featured section section-dark">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">This Week's Top Pick</h2>
+            
+            <div class="featured-card" data-aos="fade-up">
+                <div class="featured-content">
+                    <div class="featured-left">
+                        <h3>KTM Duke 390 — 2019</h3>
+                        <p class="featured-desc">
+                            This meticulously maintained KTM Duke 390 offers the perfect blend of agility and power. 
+                            With a crisp throttle response and premium components, it delivers an exhilarating riding 
+                            experience while maintaining practicality for daily use.
+                        </p>
+                        
+                        <ul class="featured-specs">
+                            <li><img src="icons/hp.svg" alt="Horsepower"> 43 BHP</li>
+                            <li><img src="icons/torque.svg" alt="Torque"> 37 Nm</li>
+                            <li><img src="icons/mileage.svg" alt="Mileage"> 28 kmpl</li>
+                            <li><img src="icons/owner.svg" alt="Owner"> Single Owner</li>
+                            <li><img src="icons/service.svg" alt="Service"> Full Service Record</li>
+                        </ul>
+                        
+                        <div class="featured-price">₹ 1,95,000</div>
+                        <button class="btn-outline" onclick="openBikeWhatsApp('KTM Duke 390', 195000)">Enquire Now</button>
+                    </div>
+                    
+                    <div class="featured-right" data-aos="fade-left">
+                        <div class="featured-img-wrapper">
+                            <img src="pexels-velroy-7996372.jpg" class="featured-img" alt="KTM Duke 390">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inventory Slider -->
+    <section id="inventory" class="inventory section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Explore Inventory</h2>
+            <p class="section-subtitle" data-aos="fade-up">Swipe / Scroll to browse our curated motorcycles.</p>
+            
+            <!-- Brand Filters -->
+            <div class="filter-row" data-aos="fade-up">
+                <button class="filter-btn active" data-brand="all">All</button>
+                <button class="filter-btn" data-brand="KTM">KTM</button>
+                <button class="filter-btn" data-brand="Royal Enfield">Royal Enfield</button>
+                <button class="filter-btn" data-brand="Honda">Honda</button>
+                <button class="filter-btn" data-brand="Yamaha">Yamaha</button>
+            </div>
+            
+            <!-- Slider -->
+            <div class="slider-wrapper" data-aos="fade-up">
+                <button class="slide-arrow left" onclick="slideLeft()">&#10094;</button>
+                
+                <div id="slider" class="slider">
+                    <!-- Bike cards will be rendered here by JavaScript -->
+                </div>
+                
+                <button class="slide-arrow right" onclick="slideRight()">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Indian Two-Wheeler Brands -->
+    <section id="brands" class="brands section section-dark">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Indian Two-Wheeler Brands</h2>
+            <p class="section-subtitle" data-aos="fade-up">Trusted names powering India's roads.</p>
+            
+            <div class="brands-grid" data-aos="fade-up">
+                <div class="brand-card">
+                    <img src="images/brands/hero.png" class="brand-img" alt="Hero MotoCorp">
+                    <p>Hero MotoCorp</p>
+                </div>
+                <div class="brand-card">
+                    <img src="images/brands/royal-enfield.png" class="brand-img" alt="Royal Enfield">
+                    <p>Royal Enfield</p>
+                </div>
+                <div class="brand-card">
+                    <img src="images/brands/ktm.png" class="brand-img" alt="KTM">
+                    <p>KTM</p>
+                </div>
+                <div class="brand-card">
+                    <img src="images/brands/tvs.png" class="brand-img" alt="TVS Motors">
+                    <p>TVS Motors</p>
+                </div>
+                <div class="brand-card">
+                    <img src="images/brands/bajaj.png" class="brand-img" alt="Bajaj Auto">
+                    <p>Bajaj Auto</p>
+                </div>
+                <div class="brand-card">
+                    <img src="images/brands/honda.png" class="brand-img" alt="Honda">
+                    <p>Honda</p>
+                </div>
+                <div class="brand-card">
+                    <img src="images/brands/yamaha.png" class="brand-img" alt="Yamaha">
+                    <p>Yamaha</p>
+                </div>
+                <div class="brand-card">
+                    <img src="images/brands/suzuki.png" class="brand-img" alt="Suzuki">
+                    <p>Suzuki</p>
+                </div>
+                <div class="brand-card">
+                    <img src="images/brands/jawa.png" class="brand-img" alt="Jawa Motorcycles">
+                    <p>Jawa Motorcycles</p>
+                </div>
+                <div class="brand-card">
+                    <img src="images/brands/harley.png" class="brand-img" alt="Harley-Davidson India">
+                    <p>Harley-Davidson India</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-left" data-aos="fade-up">
+                    <div class="contact-card">
+                        <h3>Quick Enquiry</h3>
+                        <form onsubmit="handleFormSubmit(event)">
+                            <div class="field">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="field">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+                            <div class="field">
+                                <label for="message">Your Requirement</label>
+                                <textarea id="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-large">Send on WhatsApp</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="contact-right" data-aos="fade-left">
+                    <div class="contact-info">
+                        <h3>Showroom Details</h3>
+                        <ul>
+                            <li>📍 Dehradun, Uttarakhand</li>
+                            <li>📞 +91-98765-43210</li>
+                            <li>📸 Instagram: @motormines_uk04</li>
+                        </ul>
+                        <p>
+                            Visit Motormines to explore inspected, well-maintained, performance-ready motorcycles. 
+                            Each vehicle undergoes a 150-point inspection before certification.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© <span id="year"></span> Motormines. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+    
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 900,
+            once: true
+        });
+    </script>
+</body>
+</html>
