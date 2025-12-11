@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Motormines | Premium Pre-Owned Motorcycles</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <link rel="icon" type="image/x-icon" href="Untitled (493 x 279 px).png" />
+</head>
+<body>
+  <!-- Navbar -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-container">
+    
+    <!-- Clean Logo (Only the image, no extra text) -->
+ <div class="logo">
+  <img src="output-onlinepngtools.png" class="logo-img" alt="Motormines Logo">
+</div>
+
+
+    <div class="nav-links" id="navLinks" aria-hidden="true">
+      <a href="#featured">Top Pick</a>
+      <a href="#inventory">Inventory</a>
+      <a href="#brands">Brands</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+  </div>
+</nav>
+
+
+    <!-- Bottom search area in navbar -->
+    <div class="nav-search">
+      <div class="container">
+        <div class="search-wrap">
+          <input id="topSearch" type="search" placeholder="Search bikes, brand or year — e.g. KTM, Duke, 2019" aria-label="Search inventory" />
+          <button id="searchBtn" aria-label="Search">Search</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- overlay for mobile menu -->
+  <div id="navOverlay" class="nav-overlay" hidden></div>
+
+  <!-- Quick actions (with data-bg for background images) -->
+<section class="quick-actions section">
+  <div class="container">
+    <div class="quick-grid" data-aos="fade-up">
+      <a class="quick-card" href="#inventory" data-type="buy-bikes" data-bg="images/quick/buy-bikes.jpg">
+        <div class="quick-icon">🏍️</div>
+        <div class="quick-title">Buy Bikes</div>
+        <div class="quick-sub">Explore curated used bikes</div>
+      </a>
+
+      <a class="quick-card" href="#contact" data-type="sell-bikes" data-bg="images/quick/sell-bikes.jpg">
+        <div class="quick-icon">📤</div>
+        <div class="quick-title">Sell Bikes</div>
+        <div class="quick-sub">Get valuation & sale help</div>
+      </a>
+
+      <a class="quick-card" href="#inventory" data-type="buy-cars" data-bg="images/quick/buy-cars.jpg">
+        <div class="quick-icon">🚗</div>
+        <div class="quick-title">Buy Cars</div>
+        <div class="quick-sub">Quality checked used cars</div>
+      </a>
+
+      <a class="quick-card" href="#contact" data-type="sell-cars" data-bg="images/quick/sell-cars.jpg">
+        <div class="quick-icon">💸</div>
+        <div class="quick-title">Sell Cars</div>
+        <div class="quick-sub">Quick sale assistance</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Hero (visible on medium+ screens only; hidden on small screens) -->
+  <section class="hero section" id="heroSection">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left" data-aos="fade-up">
+          <p class="tagline">PREMIUM PRE-OWNED MOTORCYCLES</p>
+          <h1 class="hero-title">
+            Ride the Thrill.<br />
+            <span class="orange-text">Own the Machine.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Discover meticulously inspected, performance-ready motorcycles from India's most trusted brands.
+            Every bike comes with a comprehensive service history and quality assurance.
+          </p>
+          <button class="btn-primary" onclick="scrollToInventory()">Explore Inventory</button>
+        </div>
+
+        <div class="hero-right" data-aos="fade-left">
+          <div class="hero-img-wrapper">
+            <img src="angry-_-kat-5AVv-01CWnE-unsplash.jpg" class="hero-bike" alt="Premium Motorcycle" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured -->
+  <section id="featured" class="featured section section-dark">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">This Week's Top Pick</h2>
+
+      <div class="featured-card" data-aos="fade-up">
+        <div class="featured-content">
+          <div class="featured-left">
+            <h3>KTM Duke 390 — 2019</h3>
+            <p class="featured-desc">
+              This meticulously maintained KTM Duke 390 offers the perfect blend of agility and power.
+            </p>
+
+            <ul class="featured-specs">
+              <li>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f28c28" stroke-width="2">
+    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  43 BHP
+</li>
+<li>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f28c28" stroke-width="2">
+    <circle cx="12" cy="12" r="9"/>
+    <path d="M12 3V12L16 16"/>
+  </svg>
+  37 Nm
+</li>
+<li>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f28c28" stroke-width="2">
+    <path d="M22 12H2L5 2H19L22 12Z" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6 12H18V22H6V12Z"/>
+  </svg>
+  28 kmpl
+</li>
+            </ul>
+
+            <div class="featured-price">₹ 1,95,000</div>
+            <button class="btn-outline" onclick="openBikeWhatsApp('KTM Duke 390', 195000)">Enquire Now</button>
+          </div>
+
+          <div class="featured-right" data-aos="fade-left">
+            <div class="featured-img-wrapper">
+              <img src="pexels-velroy-7996372.jpg" class="featured-img" alt="KTM Duke 390" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inventory Slider -->
+  <section id="inventory" class="inventory section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Explore Inventory</h2>
+      <p class="section-subtitle" data-aos="fade-up">Swipe / Scroll to browse our curated motorcycles.</p>
+
+      <div class="filter-row" data-aos="fade-up">
+        <button class="filter-btn active" data-brand="all">All</button>
+        <button class="filter-btn" data-brand="KTM">KTM</button>
+        <button class="filter-btn" data-brand="Royal Enfield">Royal Enfield</button>
+        <button class="filter-btn" data-brand="Honda">Honda</button>
+        <button class="filter-btn" data-brand="Yamaha">Yamaha</button>
+      </div>
+
+      <div class="slider-wrapper" data-aos="fade-up">
+        <button class="slide-arrow left" onclick="slideLeft()">&#10094;</button>
+
+        <div id="searchResultsInfo" class="search-info" hidden></div>
+
+        <div id="slider" class="slider">
+          <!-- cards rendered by JS -->
+        </div>
+
+        <button class="slide-arrow right" onclick="slideRight()">&#10095;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brands -->
+  <section id="brands" class="brands section section-dark">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Indian Two-Wheeler Brands</h2>
+      <p class="section-subtitle" data-aos="fade-up">Trusted names powering India's roads.</p>
+
+      <div class="brands-grid" data-aos="fade-up">
+        <!-- brand cards -->
+        <div class="brand-card"><img src="brands/Hero-logo-768x866.webp" class="brand-img" alt="Hero" /><p>Hero</p></div>
+        <div class="brand-card"><img src="brands/royal enfield.jpg" class="brand-img" alt="Royal Enfield" /><p>Royal Enfield</p></div>
+        <div class="brand-card"><img src="brands/ktm.png" class="brand-img" alt="KTM" /><p>KTM</p></div>
+        <div class="brand-card"><img src="brands/tvs-logo-tvs-icon-transparent-png-free-vector.jpg" class="brand-img" alt="TVS" /><p>TVS</p></div>
+        <div class="brand-card"><img src="brands/bajaj-auto-bike-logo-11549750548dzky3ovjqc.png" class="brand-img" alt="Bajaj" /><p>Bajaj</p></div>
+        <div class="brand-card"><img src="brands/Hero-logo-768x866.webp" class="brand-img" alt="Honda" /><p>Honda</p></div>
+      </div>
+    </div>
+  </section>
+  <!-- Happy Customers Section -->
+<section id="testimonials" class="testimonials section section-dark">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">Our Happy Customers</h2>
+    <p class="section-subtitle" data-aos="fade-up">Hear what our riders have to say about their Motormines experience.</p>
+
+    <div class="testimonials-grid" data-aos="fade-up">
+      <!-- Customer 1 -->
+      <div class="testimonial-card" data-aos="zoom-in">
+        <div class="customer-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Rahul S. with his KTM Duke" class="customer-img" loading="lazy">
+          <div class="customer-badge">KTM Owner</div>
+        </div>
+        <div class="testimonial-content">
+          <div class="testimonial-text">
+            "My KTM Duke 390 from Motormines feels brand new! The 150-point inspection gave me complete confidence. Best riding experience ever!"
+          </div>
+          <div class="customer-info">
+            <div class="customer-name">Rahul S.</div>
+            <div class="customer-location">📍 Bangalore</div>
+            <div class="customer-rating">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer 2 -->
+      <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100">
+        <div class="customer-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Priya M. with her Royal Enfield" class="customer-img" loading="lazy">
+          <div class="customer-badge">Royal Enfield Owner</div>
+        </div>
+        <div class="testimonial-content">
+          <div class="testimonial-text">
+            "Dreamed of a Royal Enfield for years. Motormines made it happen with transparent pricing and full service history. Pure joy on wheels!"
+          </div>
+          <div class="customer-info">
+            <div class="customer-name">Priya M.</div>
+            <div class="customer-location">📍 Dehradun</div>
+            <div class="customer-rating">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer 3 -->
+      <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="200">
+        <div class="customer-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Vikram J. with his Honda" class="customer-img" loading="lazy">
+          <div class="customer-badge">Honda Owner</div>
+        </div>
+        <div class="testimonial-content">
+          <div class="testimonial-text">
+            "Sold my old bike and bought a Honda Activa from Motormines. Their valuation was fair, and the new bike is in perfect condition. Highly recommended!"
+          </div>
+          <div class="customer-info">
+            <div class="customer-name">Vikram J.</div>
+            <div class="customer-location">📍 Delhi</div>
+            <div class="customer-rating">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Row with CSS counters -->
+<!-- Stats Row -->
+<div class="stats-row" data-aos="fade-up">
+  <div class="stat-item">
+    <div class="stat-number" data-count="500+">0</div>
+    <div class="stat-label">Happy Customers</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" data-count="98%">0</div>
+    <div class="stat-label">Satisfaction Rate</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" data-count="150">0</div>
+    <div class="stat-label">Point Inspection</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" data-count="24/7">0</div>
+    <div class="stat-label">Support</div>
+  </div>
+</div>
+  </div>
+</section>
+
+  <!-- Contact -->
+<section id="contact" class="contact section">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+    <p class="section-subtitle" data-aos="fade-up">Have questions? Reach out to us—we're here to help you find your perfect ride.</p>
+
+    <div class="contact-grid">
+      <div class="contact-left" data-aos="fade-up">
+        <div class="contact-card">
+          <h3>Quick Enquiry</h3>
+          <form class="contact-form" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+              <label for="name"><i class="fas fa-user"></i> Your Name</label>
+              <input type="text" id="name" class="form-input" placeholder="Enter your full name" required />
+            </div>
+            <div class="form-group">
+              <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+              <input type="tel" id="phone" class="form-input" placeholder="Enter your 10-digit mobile number" required />
+            </div>
+            <div class="form-group">
+              <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+              <input type="email" id="email" class="form-input" placeholder="Enter your email address" required />
+            </div>
+            <div class="form-group">
+              <label for="message"><i class="fas fa-comment"></i> Your Requirement</label>
+              <textarea id="message" class="form-input" placeholder="Tell us about the bike you're looking for or any questions..." rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <i class="fab fa-whatsapp"></i> Send on WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="contact-right" data-aos="fade-left">
+        <div class="contact-info-card">
+          <h3>Contact Details</h3>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-detail-content">
+                <h4>Our Showroom</h4>
+                <p>123 Motor Street, Race Course Road<br>Dehradun, Uttarakhand - 248001</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-detail-content">
+                <h4>Call Us</h4>
+                <p>+91-98765-43210<br>+91-12345-67890</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-detail-content">
+                <h4>Email Us</h4>
+                <p>info@motormines.com<br>support@motormines.com</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-social">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+              <a href="#" class="social-icon" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-icon" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-hours">
+          <h4><i class="fas fa-clock"></i> Business Hours</h4>
+          <div class="hours-list">
+            <div class="hour-item">
+              <span class="hour-day">Monday - Friday</span>
+              <span class="hour-time">9:00 AM - 8:00 PM</span>
+            </div>
+            <div class="hour-item">
+              <span class="hour-day">Saturday</span>
+              <span class="hour-time">10:00 AM - 7:00 PM</span>
+            </div>
+            <div class="hour-item">
+              <span class="hour-day">Sunday</span>
+              <span class="hour-time">11:00 AM - 5:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">
+          <img src="ChatGPT Image Dec 11, 2025, 09_58_10 AM.png" class="footer-logo-img" alt="Motormines Logo">
+          <div class="footer-logo-text">
+            <div class="footer-logo-name">MOTORMINES</div>
+            <div class="footer-logo-tagline">Premium Pre-Owned Motorcycles</div>
+          </div>
+        </a>
+        <p class="footer-description">
+          Your trusted partner for premium pre-owned motorcycles. 
+          Every bike undergoes a rigorous 150-point inspection to ensure 
+          quality and performance you can rely on.
+        </p>
+        <div class="footer-social">
+          <a href="#" class="footer-social-icon" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="footer-social-icon" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="footer-social-icon" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="footer-social-icon" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="#featured" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Top Picks
+          </a>
+          <a href="#inventory" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Browse Inventory
+          </a>
+          <a href="#brands" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Brands
+          </a>
+          <a href="#testimonials" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Testimonials
+          </a>
+          <a href="#contact" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Contact Us
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h4>Services</h4>
+        <div class="footer-links">
+          <a href="#inventory" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Buy Bikes
+          </a>
+          <a href="#contact" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Sell Your Bike
+          </a>
+          <a href="#" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Bike Valuation
+          </a>
+          <a href="#" class="footer-link">
+            <i class="fas fa-chevron-right"></i> Financing Options
+          </a>
+          <a href="#" class="footer-link">
+            <i class="fas fa-chevron-right"></i> After Sales Service
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h4>Contact Info</h4>
+        <div class="footer-contact-info">
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt footer-contact-icon"></i>
+            <div>123 Motor Street, Dehradun<br>Uttarakhand - 248001</div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone footer-contact-icon"></i>
+            <div>+91-98765-43210<br>+91-12345-67890</div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope footer-contact-icon"></i>
+            <div>info@motormines.com<br>support@motormines.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        © <span id="year"></span> Motormines. All rights reserved.
+      </div>
+      <div class="footer-legal">
+        <a href="#" class="footer-legal-link">Privacy Policy</a>
+        <a href="#" class="footer-legal-link">Terms of Service</a>
+        <a href="#" class="footer-legal-link">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" class="footer-back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </a>
+</footer>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Custom JS -->
+  <script src="app.js"></script>
+
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+</body>
+</html>
