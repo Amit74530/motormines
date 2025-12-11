@@ -193,73 +193,156 @@ function startCounting(element, target, suffix) {
   requestAnimationFrame(updateCount);
 }
 
-// render cards
-function renderBikes(list){
-  if(!slider) return;
+// ===== FIXED RENDER CARDS FUNCTION =====
+function renderBikes(list) {
+  if (!slider) return;
   slider.innerHTML = '';
-  if(!list || !list.length){
-    slider.innerHTML = '<div style="color:#cfcfcf;padding:14px">No results found.</div>';
-    if(searchInfo) { searchInfo.hidden = false; searchInfo.textContent = 'No bikes match your search.'; }
+  
+  if (!list || !list.length) {
+    slider.innerHTML = '<div style="color:#cfcfcf;padding:14px;text-align:center;width:100%;">No results found.</div>';
+    if (searchInfo) { 
+      searchInfo.hidden = false; 
+      searchInfo.textContent = 'No bikes match your search.'; 
+    }
     return;
   }
-  if(searchInfo){ searchInfo.hidden = true; searchInfo.textContent = ''; }
+  
+  if (searchInfo) { 
+    searchInfo.hidden = true; 
+    searchInfo.textContent = ''; 
+  }
 
-  list.forEach(b=>{
+  list.forEach(b => {
     const card = document.createElement('div');
     card.className = 'slide-card';
-    const safeName = b.name.replace(/'/g,"\\'");
+    const safeName = b.name.replace(/'/g, "\\'");
+    
+    // FIXED: Use the correct HTML structure that matches CSS classes
     card.innerHTML = `
-      <img src="${b.img}" class="slide-img" alt="${b.name}" loading="lazy">
-      <h3>${b.name}</h3>
-      <p class="slide-meta">${b.brand} • ${b.year} • ${b.km.toLocaleString("en-IN")} km</p>
-      <ul class="slide-specs">
-        <li>⚡ ${b.hp}</li>
-        <li>🌀 ${b.torque}</li>
-        <li>⛽ ${b.mileage}</li>
-        <li>👤 ${b.owner}</li>
-      </ul>
-      <p class="slide-price">₹ ${b.price.toLocaleString("en-IN")}</p>
-      <button class="btn-outline" onclick="openBikeWhatsApp('${safeName}', ${b.price})">Enquire</button>
+      <div class="card-image">
+        <img src="${b.img}" class="slide-img" alt="${b.name}" loading="lazy">
+        <div class="card-badge">${b.brand}</div>
+      </div>
+      <div class="card-content">
+        <h3>${b.name}</h3>
+        <p class="card-meta">${b.year} • ${b.km.toLocaleString("en-IN")} km • ${b.owner}</p>
+        <div class="card-specs">
+          <div class="spec-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+            </svg>
+            <span>${b.hp}</span>
+          </div>
+          <div class="spec-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M16 8l-8 8"></path>
+              <path d="M16 16l-8-8"></path>
+            </svg>
+            <span>${b.torque}</span>
+          </div>
+          <div class="spec-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L1 21h22L12 2z"></path>
+              <path d="M12 6v12"></path>
+              <path d="M12 12l4 4"></path>
+            </svg>
+            <span>${b.mileage}</span>
+          </div>
+        </div>
+        <div class="card-price-row">
+          <p class="slide-price">₹ ${b.price.toLocaleString("en-IN")}</p>
+          <button class="card-action-btn" onclick="openBikeWhatsApp('${safeName}', ${b.price})">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+          </button>
+        </div>
+        <button class="mobile-expand-btn" aria-expanded="false">
+          <span>View Details</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="card-details-expanded">
+          <div class="details-grid">
+            <div class="detail-item">
+              <span class="detail-label">Power</span>
+              <span class="detail-value">${b.hp}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Torque</span>
+              <span class="detail-value">${b.torque}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Mileage</span>
+              <span class="detail-value">${b.mileage}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Owner</span>
+              <span class="detail-value">${b.owner}</span>
+            </div>
+          </div>
+          <button class="card-full-btn" onclick="openBikeWhatsApp('${safeName}', ${b.price})">
+            Contact Seller via WhatsApp
+          </button>
+        </div>
+      </div>
     `;
+    
     slider.appendChild(card);
   });
 }
 
 // filtering
-function applyFilter(){
+function applyFilter() {
   let list = bikes;
-  if(currentFilter !== 'all'){
+  if (currentFilter !== 'all') {
     list = list.filter(b => b.brand === currentFilter);
   }
+  
   // apply active search if present
   const q = (searchInput && searchInput.value || '').trim().toLowerCase();
-  if(q) list = list.filter(b => {
-    return b.name.toLowerCase().includes(q) ||
-           b.brand.toLowerCase().includes(q) ||
-           String(b.year).includes(q);
-  });
+  if (q) {
+    list = list.filter(b => {
+      return b.name.toLowerCase().includes(q) ||
+             b.brand.toLowerCase().includes(q) ||
+             String(b.year).includes(q);
+    });
+  }
+  
   renderBikes(list);
 }
 
 // slider nav
-function slideLeft(){ if(!slider) return; slider.scrollBy({left:-350,behavior:'smooth'}); }
-function slideRight(){ if(!slider) return; slider.scrollBy({left:350,behavior:'smooth'}); }
+function slideLeft() { 
+  if (!slider) return; 
+  slider.scrollBy({ left: -350, behavior: 'smooth' }); 
+}
+
+function slideRight() { 
+  if (!slider) return; 
+  slider.scrollBy({ left: 350, behavior: 'smooth' }); 
+}
 
 // smooth scroll to inventory
-function scrollToInventory(){ const inv = document.getElementById('inventory'); if(inv) inv.scrollIntoView({behavior:'smooth'}); }
+function scrollToInventory() { 
+  const inv = document.getElementById('inventory'); 
+  if (inv) inv.scrollIntoView({ behavior: 'smooth' }); 
+}
 
 // WhatsApp
-function openBikeWhatsApp(name,price){
+function openBikeWhatsApp(name, price) {
   const formatted = price.toLocaleString('en-IN');
   const text = encodeURIComponent(
     `Hello Motormines,\n\nI'm interested in your *${name}*.\nPrice: ₹ ${formatted}\n\nPlease share vehicle condition and service history.\n\nThank you.`
   );
   const wa = "919876543210";
-  window.open(`https://wa.me/${wa}?text=${text}`,'_blank');
+  window.open(`https://wa.me/${wa}?text=${text}`, '_blank');
 }
 
 // contact form
-function handleFormSubmit(e){
+function handleFormSubmit(e) {
   e.preventDefault();
   const name = document.getElementById('name').value.trim();
   const phone = document.getElementById('phone').value.trim();
@@ -267,7 +350,7 @@ function handleFormSubmit(e){
   const message = document.getElementById('message').value.trim();
   const text = encodeURIComponent(`*New Enquiry from Motormines Website*\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nRequirement:\n${message}`);
   const wa = "919876543210";
-  window.open(`https://wa.me/${wa}?text=${text}`,'_blank');
+  window.open(`https://wa.me/${wa}?text=${text}`, '_blank');
   e.target.reset();
 }
 
@@ -297,20 +380,20 @@ window.scrollToInventory = scrollToInventory;
 window.openBikeWhatsApp = openBikeWhatsApp;
 window.handleFormSubmit = handleFormSubmit;
 
-// --- init once DOM is ready ---
-document.addEventListener('DOMContentLoaded', function(){
+// ===== INITIALIZATION =====
+document.addEventListener('DOMContentLoaded', function() {
 
   // footer year
   const yearEl = document.getElementById('year'); 
-  if(yearEl) yearEl.textContent = new Date().getFullYear();
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   // initial render
   renderBikes(bikes);
 
   // filters
-  filterButtons.forEach(btn=>{
-    btn.addEventListener('click', function(){
-      filterButtons.forEach(b=>b.classList.remove('active'));
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      filterButtons.forEach(b => b.classList.remove('active'));
       this.classList.add('active');
       currentFilter = this.getAttribute('data-brand');
       applyFilter();
@@ -318,24 +401,32 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 
   // search interactions - enter and button
-  if(searchInput){
-    searchInput.addEventListener('keydown', function(e){
-      if(e.key === 'Enter'){ applyFilter(); }
+  if (searchInput) {
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { 
+        applyFilter(); 
+      }
     });
   }
-  if(searchBtn){
-    searchBtn.addEventListener('click', function(){ applyFilter(); });
+  
+  if (searchBtn) {
+    searchBtn.addEventListener('click', function() { 
+      applyFilter(); 
+    });
   }
 
   // quick action click handling (can focus search / scroll)
-  document.querySelectorAll('.quick-card').forEach(card=>{
-    card.addEventListener('click', function(e){
+  document.querySelectorAll('.quick-card').forEach(card => {
+    card.addEventListener('click', function(e) {
       const type = this.dataset.type;
-      if(type && type.includes('buy')) {
+      if (type && type.includes('buy')) {
         // focus search input on mobile for buying
-        if(searchInput){ searchInput.focus(); }
+        if (searchInput) { 
+          searchInput.focus(); 
+        }
         // scroll to inventory
-        const inv = document.getElementById('inventory'); if(inv) inv.scrollIntoView({behavior:'smooth'});
+        const inv = document.getElementById('inventory'); 
+        if (inv) inv.scrollIntoView({ behavior: 'smooth' });
       }
     });
   });
@@ -345,40 +436,59 @@ document.addEventListener('DOMContentLoaded', function(){
   const navLinks = document.getElementById('navLinks');
   const navOverlay = document.getElementById('navOverlay');
 
-  function openMenu(){
-    navLinks && navLinks.classList.add('active');
-    hamburger && hamburger.classList.add('active');
-    hamburger && hamburger.setAttribute('aria-expanded','true');
-    if(navOverlay) navOverlay.hidden = false;
-    document.body.style.overflow='hidden';
+  function openMenu() {
+    if (navLinks) navLinks.classList.add('active');
+    if (hamburger) {
+      hamburger.classList.add('active');
+      hamburger.setAttribute('aria-expanded', 'true');
+    }
+    if (navOverlay) navOverlay.hidden = false;
+    document.body.style.overflow = 'hidden';
   }
-  function closeMenu(){
-    navLinks && navLinks.classList.remove('active');
-    hamburger && hamburger.classList.remove('active');
-    hamburger && hamburger.setAttribute('aria-expanded','false');
-    if(navOverlay) navOverlay.hidden = true;
-    document.body.style.overflow='auto';
+  
+  function closeMenu() {
+    if (navLinks) navLinks.classList.remove('active');
+    if (hamburger) {
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+    if (navOverlay) navOverlay.hidden = true;
+    document.body.style.overflow = 'auto';
   }
 
-  if(hamburger && navLinks){
-    hamburger.addEventListener('click', function(ev){
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', function(ev) {
       ev.stopPropagation();
-      if(navLinks.classList.contains('active')) closeMenu(); else openMenu();
+      if (navLinks.classList.contains('active')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
-    navLinks.addEventListener('click', e=>e.stopPropagation());
-    navOverlay && navOverlay.addEventListener('click', closeMenu);
+    
+    navLinks.addEventListener('click', e => e.stopPropagation());
+    
+    if (navOverlay) {
+      navOverlay.addEventListener('click', closeMenu);
+    }
+    
     const navItems = navLinks.querySelectorAll('a');
     navItems.forEach(a => a.addEventListener('click', closeMenu));
-    document.addEventListener('click', function(){
-      if(navLinks.classList.contains('active')) closeMenu();
+    
+    document.addEventListener('click', function() {
+      if (navLinks.classList.contains('active')) {
+        closeMenu();
+      }
     });
-    document.addEventListener('keydown', function(e){ 
-      if(e.key==='Escape' && navLinks && navLinks.classList.contains('active')) closeMenu(); 
+    
+    document.addEventListener('keydown', function(e) { 
+      if (e.key === 'Escape' && navLinks && navLinks.classList.contains('active')) {
+        closeMenu(); 
+      }
     });
   }
 
-  // --- Rotating placeholder (no fade) and quick-card backgrounds ---
-  // 1) Build suggestions array (unique bike names + brands + short combos)
+  // --- Rotating placeholder ---
   const suggestionSet = new Set();
   bikes.forEach(b => {
     suggestionSet.add(`${b.brand} ${b.name}`);
@@ -388,23 +498,18 @@ document.addEventListener('DOMContentLoaded', function(){
   
   const suggestions = Array.from(suggestionSet).slice(0, 20);
 
-  // 2) Start rotating placeholder
   if (searchInput && suggestions.length) {
     let si = 0;
-    // initial placeholder
     searchInput.placeholder = `Search ${suggestions[si]} or type brand / model`;
     si++;
-    // rotate every 2.2 seconds
+    
     const rotateInterval = 2200;
     const placeholderTimer = setInterval(() => {
-      // If user is typing (input has value), don't override placeholder
       if (searchInput.value && searchInput.value.trim().length > 0) return;
-      // cycle suggestions
       searchInput.placeholder = `Search ${suggestions[si]} or type brand / model`;
       si = (si + 1) % suggestions.length;
     }, rotateInterval);
 
-    // cleanup when leaving page (good practise)
     window.addEventListener('beforeunload', () => clearInterval(placeholderTimer));
   }
 
@@ -416,8 +521,133 @@ document.addEventListener('DOMContentLoaded', function(){
   // Initialize back to top button
   initBackToTop();
   
-  // Animate stats after a short delay to ensure DOM is ready
+  // Initialize mobile expand buttons for bike cards
+  function initMobileExpandButtons() {
+    const expandBtns = document.querySelectorAll('.mobile-expand-btn');
+    
+    expandBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !isExpanded);
+        
+        // Close other expanded cards
+        if (!isExpanded) {
+          expandBtns.forEach(otherBtn => {
+            if (otherBtn !== this && otherBtn.getAttribute('aria-expanded') === 'true') {
+              otherBtn.setAttribute('aria-expanded', 'false');
+            }
+          });
+        }
+      });
+      
+      // Keyboard accessibility
+      btn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+  }
+  
+  // Initialize view toggle
+  function initViewToggle() {
+    const viewBtns = document.querySelectorAll('.view-btn');
+    const cards = document.querySelectorAll('.slide-card');
+    
+    viewBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        viewBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const view = this.dataset.view;
+        cards.forEach(card => {
+          if (view === 'compact') {
+            card.classList.add('compact-view');
+          } else {
+            card.classList.remove('compact-view');
+          }
+        });
+      });
+    });
+  }
+  
+  // Initialize mobile features toggle
+  function initMobileFeaturesToggle() {
+    const toggleBtn = document.querySelector('.features-toggle-btn');
+    
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function() {
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !isExpanded);
+      });
+      
+      toggleBtn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    }
+  }
+  
+  // Initialize all mobile functionality
   setTimeout(() => {
+    initMobileExpandButtons();
+    initViewToggle();
+    initMobileFeaturesToggle();
     animateStats();
-  }, 1000);
+  }, 500);
+
 });
+
+// Staggered entrance and keyboard support
+(function () {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cards = Array.from(document.querySelectorAll('.quick-card.modern-card'));
+
+  if (!cards.length) return;
+
+  if (prefersReduced) {
+    cards.forEach(c => { 
+      c.style.opacity = 1; 
+      c.style.transform = 'none'; 
+    });
+  } else {
+    cards.forEach((card, i) => {
+      card.style.animationDelay = (i * 80) + 'ms';
+      card.addEventListener('keydown', (ev) => {
+        if ((ev.key === 'Enter' || ev.key === ' ') && document.activeElement === card) {
+          ev.preventDefault();
+          card.click();
+        }
+      });
+    });
+  }
+
+  cards.forEach(c => c.setAttribute('tabindex', '0'));
+})();
+
+ // Simple script to update the mobile dots based on scroll (non-invasive)
+    (function () {
+      const wrapper = document.querySelector('.cards-scroll-wrapper');
+      const dots = document.querySelectorAll('.scroll-dots .dot');
+      if (!wrapper || !dots.length) return;
+
+      function updateDots() {
+        const scrollLeft = wrapper.scrollLeft;
+        const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+        const pct = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+        const index = Math.round(pct * (dots.length - 1));
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      }
+      wrapper.addEventListener('scroll', updateDots, { passive: true });
+      window.addEventListener('resize', updateDots);
+      updateDots();
+    })();
+
+
+
+
+
+
