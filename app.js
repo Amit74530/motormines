@@ -124,8 +124,8 @@ function animateStats() {
         
         // Define the stats to animate
         const stats = [
-          { selector: '.stat-item:nth-child(1) .stat-number', target: 500, suffix: '+' },
-          { selector: '.stat-item:nth-child(2) .stat-number', target: 98, suffix: '%' },
+          { selector: '.stat-item:nth-child(1) .stat-number', target: 5202, suffix: '' },
+          { selector: '.stat-item:nth-child(2) .stat-number', target: 99, suffix: '%' },
           { selector: '.stat-item:nth-child(3) .stat-number', target: 150, suffix: '' },
           { selector: '.stat-item:nth-child(4) .stat-number', target: 24, suffix: '/7' }
         ];
@@ -263,11 +263,31 @@ function handleFormSubmit(e){
   e.preventDefault();
   const name = document.getElementById('name').value.trim();
   const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
   const message = document.getElementById('message').value.trim();
-  const text = encodeURIComponent(`*New enquiry*\n\nName: ${name}\nPhone: ${phone}\n\n${message}`);
+  const text = encodeURIComponent(`*New Enquiry from Motormines Website*\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nRequirement:\n${message}`);
   const wa = "919876543210";
   window.open(`https://wa.me/${wa}?text=${text}`,'_blank');
   e.target.reset();
+}
+
+// Back to top button functionality
+function initBackToTop() {
+  const backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 }
 
 // expose functions globally used by markup
@@ -276,7 +296,6 @@ window.slideRight = slideRight;
 window.scrollToInventory = scrollToInventory;
 window.openBikeWhatsApp = openBikeWhatsApp;
 window.handleFormSubmit = handleFormSubmit;
-window.animateStats = animateStats; // Expose for testing
 
 // --- init once DOM is ready ---
 document.addEventListener('DOMContentLoaded', function(){
@@ -389,41 +408,13 @@ document.addEventListener('DOMContentLoaded', function(){
     window.addEventListener('beforeunload', () => clearInterval(placeholderTimer));
   }
 
-  // 3) Apply background images to quick-cards from data-bg attribute
-  // Using Unsplash placeholder images for quick cards too
-  document.querySelectorAll('.quick-card').forEach(card => {
-    const type = card.dataset.type;
-    let imageUrl = '';
-    
-    // Assign different Unsplash images based on card type
-    switch(type) {
-      case 'buy-bikes':
-        imageUrl = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
-        break;
-      case 'sell-bikes':
-        imageUrl = 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
-        break;
-      case 'buy-cars':
-        imageUrl = 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
-        break;
-      case 'sell-cars':
-        imageUrl = 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
-        break;
-      default:
-        imageUrl = 'https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
-    }
-    
-    card.style.backgroundImage = `url('${imageUrl}')`;
-    card.style.backgroundRepeat = 'no-repeat';
-    card.style.backgroundSize = 'cover';
-    card.style.backgroundPosition = 'center';
-    card.classList.add('has-bg');
-  });
-  
   // Initialize AOS
   if (typeof AOS !== 'undefined') {
     AOS.init({ duration: 800, once: true });
   }
+  
+  // Initialize back to top button
+  initBackToTop();
   
   // Animate stats after a short delay to ensure DOM is ready
   setTimeout(() => {
