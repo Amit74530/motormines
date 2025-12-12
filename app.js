@@ -647,6 +647,72 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
 
 
+    // Add this JavaScript for slider functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const slider = document.querySelector('.testimonials-slider');
+  const prevBtn = document.querySelector('.slider-nav.prev');
+  const nextBtn = document.querySelector('.slider-nav.next');
+  const dots = document.querySelectorAll('.indicator-dot');
+  let currentIndex = 0;
+  
+  if (slider && prevBtn && nextBtn) {
+    // Calculate card width including gap
+    const cardStyle = window.getComputedStyle(document.querySelector('.testimonial-card'));
+    const cardWidth = parseInt(cardStyle.width) + parseInt(cardStyle.marginRight || 0);
+    const gap = 25; // matches CSS gap
+    
+    // Next button click
+    nextBtn.addEventListener('click', () => {
+      currentIndex = Math.min(currentIndex + 1, 4);
+      updateSlider();
+    });
+    
+    // Previous button click
+    prevBtn.addEventListener('click', () => {
+      currentIndex = Math.max(currentIndex - 1, 0);
+      updateSlider();
+    });
+    
+    // Dot click
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+    
+    // Update slider position and active dot
+    function updateSlider() {
+      const scrollAmount = currentIndex * (cardWidth + gap);
+      slider.scrollTo({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+      
+      // Update active dot
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+    
+    // Update dots on scroll
+    slider.addEventListener('scroll', () => {
+      const scrollPosition = slider.scrollLeft;
+      const newIndex = Math.round(scrollPosition / (cardWidth + gap));
+      
+      if (newIndex !== currentIndex && newIndex >= 0 && newIndex <= 4) {
+        currentIndex = newIndex;
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentIndex);
+        });
+      }
+    });
+    
+    // Initialize
+    updateSlider();
+  }
+});
+
 
 
 
